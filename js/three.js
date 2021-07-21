@@ -38,6 +38,10 @@ scene.add(target);
 targetList.push(target);
 /* End of Target variables */
 
+//timer
+var time = "|";
+var endTime = "|"
+const SECONDS = 1000;
 
 //render the screen
 function render() {
@@ -57,9 +61,17 @@ function render() {
     }
     //if 10 targets hit, report stats
     if(targetsHit >= 10) {
-        alert("You hit " + targetsHit + "/" + clicks + " shots");
+        //stop timer
+        endTime = new Date();
+        endTime = endTime.getTime()/SECONDS;
+        //get total time
+        let totalTime = endTime - time;
+        alert("You hit " + targetsHit + "/" + clicks + " shots in: " + totalTime.toString().substring(0, 6) + " seconds");
+        //reset game/timer
         clicks = 0;
         targetsHit = 0;
+        time = "|";
+        endTime = "|";
     }
 }
 
@@ -73,6 +85,12 @@ function animate() {
 //when mouse is clicked
 function onDocumentMouseDown(event) {
     event.preventDefault();
+
+    //start timer after first click
+    if(time == "|") {
+        time = new Date()
+        time = time.getTime()/SECONDS;
+    }
 
     clicks += 1;
 
