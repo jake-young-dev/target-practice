@@ -4,6 +4,8 @@ A simple target practice game written in threeJS
 
 This project must be run using a http server.
 
-[Python](https://www.python.org/) has a built-in http server that can be used by navigating to the root of the application and running python -m http.server.
-
-Once the http server is running navigate in your browser to [here](http://localhost:8000/three.html) to start the game.
+To run:
+  Clone repo, and run "npm install three" command from root dir
+  Download and install [Python 3](https://www.python.org/) as we will use the prebuilt http server
+  run "python -m http.server" in root directory to launch the server.
+  Once the http server is running navigate in your browser to [here](http://localhost:8000/three.html) to start the game.
