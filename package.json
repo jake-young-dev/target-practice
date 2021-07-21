@@ -1,0 +1,20 @@
+{
+  "name": "target-practice",
+  "version": "1.0.0",
+  "description": "A simple target practice game written in threeJS<br /><br />",
+  "dependencies": {
+    "three": "^0.130.1",
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jake-young-dev/target-practice.git"
+  },
+  "keywords": [],
+  "author": "jake-young-dev"
+}
