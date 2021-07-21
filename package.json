@@ -1,0 +1,23 @@
+{
+  "name": "target-practice",
+  "version": "1.0.0",
+  "description": "simple threejs game",
+  "main": "index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "gh-pages": "^3.2.3",
+    "three": "^0.130.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jake-young-dev/target-practice.git"
+  },
+  "author": "jake-young-dev"
+}
