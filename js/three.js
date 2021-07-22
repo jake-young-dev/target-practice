@@ -59,20 +59,6 @@ function render() {
         targetList.push(target);
         scene.add(target);    
     }
-    //if 10 targets hit, report stats
-    if(targetsHit >= 10) {
-        //stop timer
-        endTime = new Date();
-        endTime = endTime.getTime()/SECONDS;
-        //get total time
-        let totalTime = endTime - time;
-        alert("You hit " + targetsHit + "/" + clicks + " shots in: " + totalTime.toString().substring(0, 6) + " seconds");
-        //reset game/timer
-        clicks = 0;
-        targetsHit = 0;
-        time = "|";
-        endTime = "|";
-    }
 }
 
 //animation loop
@@ -102,11 +88,20 @@ function onDocumentMouseDown(event) {
 
     //was a target hit
     var intersects = raycaster.intersectObject(target);
-    for(let i = 0; i < intersects.length; i++) {
-        if(intersects[i].object == target) {
-            scene.remove(target);
-            targetList.pop();
-            targetsHit += 1;
+    if(intersects) {
+        scene.remove(target);
+        targetList.pop();
+        targetsHit += 1;
+        if(targetsHit >= 10) {
+            endTime = new Date();
+            endTime = endTime.getTime()/SECONDS;
+            let totalTime = endTime - time;
+            alert("You hit " + targetsHit + "/" + clicks + " shots in: " + totalTime.toString().substring(0, 6) + " seconds");
+            //reset game/timer
+            clicks = 0;
+            targetsHit = 0;
+            time = "|";
+            endTime = "|";
         }
     }
     renderer.render(scene, camera);
