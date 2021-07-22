@@ -48,8 +48,23 @@ function render() {
     //make sure there is only one target, and stop after 10 are hit
     if(targetList.length < 1 && targetsHit < 10) {
         //calculate psuedo random position between (4, 4) and (-4, -4)
-        x = Math.floor(Math.random() * 9) - 4;
-        y = Math.floor(Math.random() * 9) - 4;
+        let x2 = (Math.random() * 9) - 4;
+        let y2 = (Math.random() * 9) - 4;
+        //make sure targets are not in same spot
+        while(Math.abs(x2-x) < 1 || Math.abs(y2-y) < 1) {
+            x2 = (Math.random() * 9) - 4;
+            y2 = (Math.random() * 9) - 4;
+        }
+        x = x2;
+        y = y2;
+        //keep in range
+        if(y > 4) {
+            y = Math.floor(y);
+        }
+        if(x > 4) {
+            x = Math.floor(x);
+        }
+
         //create a new target if hit
         geometry = new THREE.CircleGeometry(0.1, 50);
         material = new THREE.MeshBasicMaterial({color: 0xffffff});
@@ -57,7 +72,8 @@ function render() {
         target.position.x = x;
         target.position.y = y;
         targetList.push(target);
-        scene.add(target);    
+        scene.add(target);
+        console.log(x + ", " + y);
     }
 }
 
@@ -88,20 +104,22 @@ function onDocumentMouseDown(event) {
 
     //was a target hit
     var intersects = raycaster.intersectObject(target);
-    if(intersects) {
-        scene.remove(target);
-        targetList.pop();
-        targetsHit += 1;
-        if(targetsHit >= 10) {
-            endTime = new Date();
-            endTime = endTime.getTime()/SECONDS;
-            let totalTime = endTime - time;
-            alert("You hit " + targetsHit + "/" + clicks + " shots in: " + totalTime.toString().substring(0, 6) + " seconds");
-            //reset game/timer
-            clicks = 0;
-            targetsHit = 0;
-            time = "|";
-            endTime = "|";
+    for(let i = 0; i < intersects.length; i++) {
+        if(intersects[i].object == target) {
+            scene.remove(target);
+            targetList.pop();
+            targetsHit += 1;
+            if(targetsHit >= 10) {
+                endTime = new Date();
+                endTime = endTime.getTime()/SECONDS;
+                let totalTime = endTime - time;
+                alert("You hit " + targetsHit + "/" + clicks + " shots in: " + totalTime.toString().substring(0, 6) + " seconds");
+                //reset game/timer
+                clicks = 0;
+                targetsHit = 0;
+                time = "|";
+                endTime = "|";
+            }
         }
     }
     renderer.render(scene, camera);
