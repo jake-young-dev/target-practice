@@ -47,23 +47,16 @@ const SECONDS = 1000;
 function render() {
     //make sure there is only one target, and stop after 10 are hit
     if(targetList.length < 1 && targetsHit < 10) {
-        //calculate psuedo random position between (4, 4) and (-4, -4)
-        let x2 = (Math.random() * 9) - 4;
-        let y2 = (Math.random() * 9) - 4;
+        //calculate psuedo random position
+        let x2 = (Math.random() * 9) - 4.5;
+        let y2 = (Math.random() * 9) - 4.5;
         //make sure targets are not in same spot
         while(Math.abs(x2-x) < 1 || Math.abs(y2-y) < 1) {
-            x2 = (Math.random() * 9) - 4;
-            y2 = (Math.random() * 9) - 4;
+            x2 = (Math.random() * 9) - 4.5;
+            y2 = (Math.random() * 9) - 4.5;
         }
         x = x2;
         y = y2;
-        //keep in range
-        if(y > 4) {
-            y = Math.floor(y);
-        }
-        if(x > 4) {
-            x = Math.floor(x);
-        }
 
         //create a new target if hit
         geometry = new THREE.CircleGeometry(0.1, 50);
