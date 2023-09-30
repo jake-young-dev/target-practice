@@ -14,3 +14,7 @@ To run:<br />
 
  To build: <br />
  -- In the root of the project run "npx webpack"
+
+Try it out here: https://jake-young-dev.github.io/target-practice/
+
+The timer starts after your first click and ends after 10 target hits
